@@ -18,14 +18,17 @@
  */
 package org.apache.shiro.spring.web.config;
 
+import java.util.List;
+
 import org.apache.shiro.spring.web.ShiroUrlPathHelper;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping;
 
 @Configuration
 public class ShiroRequestMappingConfig {
-
-    public ShiroRequestMappingConfig(RequestMappingHandlerMapping requestMappingHandlerMapping) {
-        requestMappingHandlerMapping.setUrlPathHelper(new ShiroUrlPathHelper());
+    public ShiroRequestMappingConfig(List<RequestMappingHandlerMapping> requestMappingHandlerMappings) {
+        for (RequestMappingHandlerMapping requestMappingHandlerMapping : requestMappingHandlerMappings) {
+            requestMappingHandlerMapping.setUrlPathHelper(new ShiroUrlPathHelper());
+        }
     }
 }
